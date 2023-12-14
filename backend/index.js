@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 // express
 //body parser
 app.use(express.json());
+app.use('/api', require("./Routes/CreateUser"));
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
