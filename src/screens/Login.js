@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [Credentials, setCredentials] = useState({ email: "", password: "" });
-
+  let navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,7 +21,12 @@ export default function Login() {
     console.log(json);
 
     if (!json.success) {
-      alert("Invalid Username or Password");
+      alert("Invalid Email  or Password");
+    }
+    if (json.success) {
+      localStorage.setItem("authToken",json.authToken)
+      console.log(localStorage.getItem("authToken"));
+      navigate("/");
     }
   };
 
